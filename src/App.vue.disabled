@@ -1,0 +1,130 @@
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import NavBar from './components/NavBar.vue'
+import { ref } from 'vue'
+
+// state to manage sidebar toggle
+const isSidebarCollapsed = ref(false)
+
+// function to toggle sidebar state
+const toggleSidebar = () => {
+  isSidebarCollapsed.value = !isSidebarCollapsed.value
+}
+</script>
+
+<template>
+  <div class="d-flex vh-100 conntainer-fluid">
+    <!-- sidebar -->
+    <!-- v-if="$route.path !=='/login'" -->
+    <nav
+      
+      :class="[' d-flex flex-column vh-100', isSidebarCollapsed ? 'col-1' : 'col-2']"
+      style="background-color: #1c1c1c; color: #d4d8dd"
+    >
+      <!-- toggle button -->
+      <button class="btn btn-sm btn-secondary" @click="toggleSidebar">
+        {{ isSidebarCollapsed ? '>' : '<' }}
+      </button>
+
+      <h5 class="text-center mt-4">
+        {{ isSidebarCollapsed ? 'WES' : 'Warehouse Execution System' }}
+      </h5>
+      <hr class="mx-3" />
+
+      <ul class="nav flex-column p-3 flex-grow-1">
+        <li class="mb-2">
+          <RouterLink class="nav-link" active-class="active-link" to="/logdetail">
+            <i class="bi bi-file-earmark-code"></i>
+            <span v-if="!isSidebarCollapsed" class="ms-2">系統LOG紀錄</span>
+          </RouterLink>
+        </li>
+
+        <!-- order info view-->
+        <li class="mb-2">
+          <RouterLink class="nav-link" active-class="active-link" to="/orderinfo">
+            <i class="bi bi-truck"></i>
+            <span v-if="!isSidebarCollapsed" class="ms-2">出庫訂單</span>
+          </RouterLink>
+        </li>
+        
+        <!-- skumaster view -->
+        <li class="mb-2">
+          <RouterLink class="nav-link" active-class="active-link" to="/skumaster">
+            <i class="bi bi-info-circle"></i>
+            <span v-if="!isSidebarCollapsed" class="ms-2">商品資訊</span>
+          </RouterLink>
+        </li>
+
+        <!-- inbound view -->
+        <li class="mb-2">
+          <RouterLink class="nav-link" active-class="active-link" to="/inbound">
+            <i class="bi bi-archive"></i>
+            <span v-if="!isSidebarCollapsed" class="ms-2">入庫清單</span>
+          </RouterLink>
+        </li>
+
+        <!-- login view -->
+        <li class="mb-2">
+          <RouterLink class="nav-link" active-class="active-link" to="/login">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span v-if="!isSidebarCollapsed" class="ms-2">Login</span>
+          </RouterLink>
+        </li>
+
+        <!-- api log -->
+        <li class="mb-2">
+          <RouterLink
+            class="text-reset text-decoration-none nav-link"
+            active-class="active-link"
+            to="/apilog"
+            >API資訊紀錄</RouterLink
+          >
+        </li>
+
+        <!-- tes view -->
+        <li class="mb-2">
+          <RouterLink
+            class="text-reset text-decoration-none nav-link"
+            active-class="active-link"
+            to="/test"
+            >Test</RouterLink
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- content -->
+    <div :class="isSidebarCollapsed ? 'col-11' : 'col-10'" class="p-1 overflow-auto">
+      <!-- <NavBar v-if="$route.path !== '/login'"/> -->
+      <NavBar />
+      <RouterView />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.nav-link {
+  color: #d4d8dd;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+.nav-link i {
+  color: #d4d8dd;
+}
+/* Highlight the active link */
+.active-link {
+  background-color: #ffffff; /* Adjust the color as needed */
+  border-radius: 5px;
+  padding: 5px;
+  color: #000000; /* Optional: make the text color white */
+  transition: all 0.3s ease;
+}
+
+.active-link i {
+  color: #000000;
+}
+</style>

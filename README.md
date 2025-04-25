@@ -15,6 +15,7 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 ```sh
 npm install
 ```
+### remove vite confg file in node_modules
 
 ### Compile and Hot-Reload for Development
 

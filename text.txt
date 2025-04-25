@@ -1,1 +1,6 @@
-test
+C:\PROJECT_DEV\WES\WES_Fontend>git config --global --list
+user.name=PIC\P10410594
+user.email=peter1098@pic.net.tw
+difftool.sourcetree.cmd='' 
+mergetool.sourcetree.cmd='' 
+mergetool.sourcetree.trustexitcode=true

@@ -10,7 +10,7 @@ const Base_URL = import.meta.env.VITE_API_BASE_URL
 // const loginUrl = `${Base_URL}${APIPaths.login}`
 
 // test url
-const loginUrl = `http://10.35.10.83:5000/UI/Auth/login`
+const loginUrl = `http://172.20.170.71:5000/UI/Auth/login`
 
 export const LoginFunction = () => {
   const router = useRouter()
